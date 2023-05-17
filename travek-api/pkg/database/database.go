@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	db_host = "localhost:3306"
+	db_host = "db:3306"
 	db_name = "travek_db"
 	db_user = "root"
 	db_pass = "qwer"
@@ -16,11 +16,12 @@ const (
 
 func Get_db() *sql.DB {
 	cnf := mysql.Config{
-		User:   db_user,
-		Passwd: db_pass,
-		Net:    "tcp",
-		Addr:   db_host,
-		DBName: db_name,
+		User:                 db_user,
+		Passwd:               db_pass,
+		Net:                  "tcp",
+		Addr:                 db_host,
+		DBName:               db_name,
+		AllowNativePasswords: true,
 	}
 	db, err := sql.Open("mysql", cnf.FormatDSN())
 	if err != nil {

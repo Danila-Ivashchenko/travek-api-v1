@@ -1,7 +1,6 @@
 package agragator
 
 import (
-	"fmt"
 	"travek-api/internal/country"
 	"travek-api/internal/country_tags"
 	"travek-api/internal/country_timezone"
@@ -26,7 +25,7 @@ type Agragator struct {
 func (a *Agragator) AddCountry(data *BigCountryAddData) (*country.PresentedCountryData, error) {
 	cdata := data.ExtractCountryData()
 	timeData := data.ExtractTimezones()
-	tagsData := data.ExtractTags()
+
 	pcdata, err := a.Cs.AddCountry(&cdata)
 	if err != nil {
 		return nil, err
@@ -35,7 +34,10 @@ func (a *Agragator) AddCountry(data *BigCountryAddData) (*country.PresentedCount
 	if err != nil {
 		return pcdata, err
 	}
-	_, err = a.Ctags.AddCountyTags(pcdata.Id, tagsData)
+	if len(data.Tags) > 0 {
+		tagsData := data.ExtractTags()
+		_, err = a.Ctags.AddCountyTags(pcdata.Id, tagsData)
+	}
 	return pcdata, err
 }
 
@@ -44,6 +46,7 @@ func (a *Agragator) AddRelations(data *BigRelationAddData) (*relation.PresentedR
 	if err != nil {
 		return nil, err
 	}
+
 	pdata, err := a.Rels.AddRelation(rdata)
 	return pdata, err
 }
@@ -86,15 +89,22 @@ func (a *Agragator) AddTagsToCountry(data *TagsToCountryData) (*[]country_tags.P
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return a.Ctags.GetCountyTagsByCountryId(countryData.Id)
 }
 
 // get results
 
 func (a *Agragator) GetSuitable(data *CriteriasData) (*[]country.PresentedCountryData, error) {
-	stmt := fmt.Sprintf(`country.id IN(%s)`, data.ExtractSQL())
-	return a.Cs.GetCountriesWithHaving(stmt)
+	// havingCase := data.ExtractSQL()
+	// stmt := ""
+	// if havingCase != "" {
+	// 	stmt = fmt.Sprintf(`country.id IN(%s)`, havingCase)
+	// }
+	// return a.Cs.GetCountriesWithHaving(stmt)
+	whereCase := data.getWhereCase()
+
+	return a.Cs.GetCountriesWithWhere(whereCase)
 }
 
 func GetAgregator() Agragator {

@@ -11,7 +11,7 @@ type rowScaner interface {
 
 func presentedDataFromRowScaner(row rowScaner) (*PresentedRelationData, error) {
 	data := &PresentedRelationData{}
-	err := row.Scan(&data.Id, &data.FirstCountry, &data.SecondCountry, &data.FreeEntry, &data.PossibilityToStayForever)
+	err := row.Scan(&data.Id, &data.FirstCountry, &data.SecondCountry, &data.InternalPassport, &data.PossibilityToStayForever)
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func (*servise) GetAllRelationsByCountryId(countryId int64) (*[]PresentedRelatio
 	return &pdatas, nil
 }
 func (*servise) GetAllRelationsByCountryName(name string) (*[]PresentedRelationData, error) {
-	stmt := fmt.Sprintf(`SELECT relation.id, relation.first_country, relation.second_country, relation.free_entry, relation.possibility_to_stay_forever FROM relation, country WEHRE country.name = "%s" AND country.id IN (relation.first_country, relation.second_country)`, name)
+	stmt := fmt.Sprintf(`SELECT relation.id, relation.first_country, relation.second_country, relation.possibility_to_stay_forever, relation.internal_passport FROM relation, country WEHRE country.name = "%s" AND country.id IN (relation.first_country, relation.second_country)`, name)
 	db := database.Get_db()
 	defer db.Close()
 

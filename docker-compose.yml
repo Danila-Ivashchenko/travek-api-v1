@@ -1,0 +1,30 @@
+version: '3.8'
+
+
+services:
+  api:
+    build: travek-api
+    command: "./main"
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mysql-utf8
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_PASSWORD: qwer
+      MYSQL_DATABASE: travek_db
+    ports:
+      - "3036:3306"
+    volumes:
+      - ./travek-db/data:/docker-entrypoint-initdb.d/
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./Travek:/var/www/html
+    depends_on:
+      - api

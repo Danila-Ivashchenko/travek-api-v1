@@ -3,6 +3,7 @@ package endpoints
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"travek-api/internal/agragator"
 	"travek-api/internal/tags"
 
@@ -15,6 +16,25 @@ func NewEndpoints() Endpoints {
 	return Endpoints{}
 }
 
+func (*Endpoints) GetAllCountries(c echo.Context) error {
+	data, err := agragator.GetAgregator().Cs.GetAllCountries()
+	if err != nil {
+		return c.JSON(http.StatusOK, BadBaseResponse(err))
+	}
+	return c.JSON(http.StatusOK, GoodBaseResponse("countries", data))
+}
+
+func (*Endpoints) GetOneCountry(c echo.Context) error {
+	id, err := strconv.Atoi(c.QueryParam("id"))
+	if err != nil {
+		return c.JSON(http.StatusOK, BadBaseResponse(err))
+	}
+	data, err := agragator.GetAgregator().Cs.GetAllCountryDataById(int64(id))
+	if err != nil {
+		return c.JSON(http.StatusOK, BadBaseResponse(err))
+	}
+	return c.JSON(http.StatusOK, GoodBaseResponse("country", data))
+}
 func (*Endpoints) AddCountry(c echo.Context) error {
 	request := agragator.BigCountryAddData{}
 	err := c.Bind(&request)
@@ -63,6 +83,14 @@ func (*Endpoints) AddRoads(c echo.Context) error {
 		return c.JSON(http.StatusOK, BadBaseResponse(err))
 	}
 	return c.JSON(http.StatusOK, GoodBaseResponse("roads", data))
+}
+
+func (*Endpoints) GetTags(c echo.Context) error {
+	data, err := agragator.GetAgregator().Tags.GetAllTags()
+	if err != nil {
+		return c.JSON(http.StatusOK, BadBaseResponse(err))
+	}
+	return c.JSON(http.StatusOK, GoodBaseResponse("tags", data))
 }
 
 func (*Endpoints) AddTags(c echo.Context) error {

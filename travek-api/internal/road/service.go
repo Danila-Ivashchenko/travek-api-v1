@@ -47,7 +47,7 @@ func (*servise) getRowWithWhereCase(whereCase string) (*PresentedRoadData, error
 	db := database.Get_db()
 	defer db.Close()
 
-	fmt.Println(stmt)
+	// fmt.Println(stmt)
 	row := db.QueryRow(stmt)
 	data, err := presentedDataFromRowScaner(row)
 	return data, err

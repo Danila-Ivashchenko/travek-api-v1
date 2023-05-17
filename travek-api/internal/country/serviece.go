@@ -11,7 +11,16 @@ type rowScaner interface {
 
 func presentedDataFromRowScaner(row rowScaner) (*PresentedCountryData, error) {
 	data := &PresentedCountryData{}
-	err := row.Scan(&data.Id, &data.Name, &data.Language, &data.Continent)
+	err := row.Scan(&data.Id, &data.Name, &data.Language)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+}
+
+func allDataFromRowScaner(row rowScaner) (*AllCountryData, error) {
+	data := &AllCountryData{}
+	err := row.Scan(&data.Id, &data.Name, &data.Language, &data.Description)
 	if err != nil {
 		return nil, err
 	}
@@ -24,11 +33,13 @@ type Servise interface {
 
 	GetCountyByName(name string) (*PresentedCountryData, error)
 	GetCountyById(id int64) (*PresentedCountryData, error)
+	GetAllCountryDataById(id int64) (*AllCountryData, error)
+	GetAllCountryDataByName(name string) (*AllCountryData, error)
 
 	GetCountriesWithWhere(whereCase string, limit_ofset ...int) (*[]PresentedCountryData, error)
 	GetAllCountries(limit_ofset ...int) (*[]PresentedCountryData, error)
 	GetCountriesByLanguage(language string, limit_ofset ...int) (*[]PresentedCountryData, error)
-	GetCountriesByContinent(continent string, limit_ofset ...int) (*[]PresentedCountryData, error)
+
 	GetCountriesWithHaving(havingCase string, limit_ofset ...int) (*[]PresentedCountryData, error)
 
 	DeleteCountryById(id int64) (bool, error)
@@ -40,7 +51,7 @@ type servise struct{}
 // primal select
 
 func (*servise) getRowWithWhereCase(whereCase string) (*PresentedCountryData, error) {
-	stmt := "SELECT * FROM country"
+	stmt := "SELECT country.id, country.name, country.language FROM country"
 	if whereCase != "" {
 		stmt += fmt.Sprintf(" WHERE %s", whereCase)
 	}
@@ -52,8 +63,21 @@ func (*servise) getRowWithWhereCase(whereCase string) (*PresentedCountryData, er
 	return data, err
 }
 
-func (*servise) getRowsWithWhereCase(whereCase string, limit_ofset ...int) (*[]PresentedCountryData, error) {
+func (*servise) getAllRowWithWhereCase(whereCase string) (*AllCountryData, error) {
 	stmt := "SELECT * FROM country"
+	if whereCase != "" {
+		stmt += fmt.Sprintf(" WHERE %s", whereCase)
+	}
+	db := database.Get_db()
+	defer db.Close()
+
+	row := db.QueryRow(stmt)
+	data, err := allDataFromRowScaner(row)
+	return data, err
+}
+
+func (*servise) getRowsWithWhereCase(whereCase string, limit_ofset ...int) (*[]PresentedCountryData, error) {
+	stmt := "SELECT country.id, country.name, country.language FROM country"
 	if whereCase != "" {
 		stmt += fmt.Sprintf(" WHERE %s", whereCase)
 	}
@@ -82,7 +106,7 @@ func (*servise) getRowsWithWhereCase(whereCase string, limit_ofset ...int) (*[]P
 }
 
 func (*servise) GetCountriesWithHaving(havingCase string, limit_ofset ...int) (*[]PresentedCountryData, error) {
-	stmt := "SELECT country.id, country.name, country.language, country.continent FROM country"
+	stmt := "SELECT country.id, country.name, country.language FROM country"
 	if havingCase != "" {
 		stmt += fmt.Sprintf(" HAVING %s", havingCase)
 	}
@@ -112,6 +136,15 @@ func (*servise) GetCountriesWithHaving(havingCase string, limit_ofset ...int) (*
 
 // select one
 
+func (s *servise) GetAllCountryDataById(id int64) (*AllCountryData, error) {
+	whereCase := fmt.Sprintf("id = %d", id)
+	return s.getAllRowWithWhereCase(whereCase)
+}
+func (s *servise) GetAllCountryDataByName(name string) (*AllCountryData, error) {
+	whereCase := fmt.Sprintf(`name = "%s"`, name)
+	return s.getAllRowWithWhereCase(whereCase)
+}
+
 func (s *servise) GetCountyByName(name string) (*PresentedCountryData, error) {
 	whereCase := fmt.Sprintf(`name = "%s"`, name)
 	return s.getRowWithWhereCase(whereCase)
@@ -126,11 +159,6 @@ func (s *servise) GetCountyById(id int64) (*PresentedCountryData, error) {
 
 func (s *servise) GetAllCountries(limit_ofset ...int) (*[]PresentedCountryData, error) {
 	return s.getRowsWithWhereCase("", limit_ofset...)
-}
-
-func (s *servise) GetCountriesByContinent(continent string, limit_ofset ...int) (*[]PresentedCountryData, error) {
-	whereCase := fmt.Sprintf("continent = %s", continent)
-	return s.getRowsWithWhereCase(whereCase, limit_ofset...)
 }
 
 func (s *servise) GetCountriesByLanguage(language string, limit_ofset ...int) (*[]PresentedCountryData, error) {

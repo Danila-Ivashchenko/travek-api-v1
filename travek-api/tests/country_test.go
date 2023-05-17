@@ -61,14 +61,14 @@ func TestCountriesIsertDelete(t *testing.T) {
 
 	mdatas := []country.MainCountryData{
 		country.MainCountryData{
-			Name:      "A",
-			Language:  "As",
-			Continent: "Eurasia",
+			Name:        "A",
+			Language:    "As",
+			Description: "Eurasia",
 		},
 		country.MainCountryData{
-			Name:      "B",
-			Language:  "Bs",
-			Continent: "Eurasia",
+			Name:        "B",
+			Language:    "Bs",
+			Description: "Eurasia",
 		},
 	}
 

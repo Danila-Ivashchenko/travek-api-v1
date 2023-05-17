@@ -11,21 +11,21 @@ func TestRelationsIsertDelete(t *testing.T) {
 
 	mdatas := []relation.MainRelationData{
 		relation.MainRelationData{
-			FirstCountry:             (countries)[0].Id,
-			SecondCountry:            (countries)[1].Id,
-			FreeEntry:                true,
+			FirstCountry:  (countries)[0].Id,
+			SecondCountry: (countries)[1].Id,
+			// FreeEntry:                true,
 			PossibilityToStayForever: false,
 		},
 		relation.MainRelationData{
-			FirstCountry:             (countries)[0].Id,
-			SecondCountry:            (countries)[2].Id,
-			FreeEntry:                true,
+			FirstCountry:  (countries)[0].Id,
+			SecondCountry: (countries)[2].Id,
+			// FreeEntry:                true,
 			PossibilityToStayForever: false,
 		},
 		relation.MainRelationData{
-			FirstCountry:             (countries)[2].Id,
-			SecondCountry:            (countries)[3].Id,
-			FreeEntry:                true,
+			FirstCountry:  (countries)[2].Id,
+			SecondCountry: (countries)[3].Id,
+			// FreeEntry:                true,
 			PossibilityToStayForever: false,
 		},
 	}

@@ -6,24 +6,24 @@ func addFakeCountries() []country.PresentedCountryData {
 	cs := country.GetService()
 	cmdatas := []country.MainCountryData{
 		country.MainCountryData{
-			Name:      "A",
-			Language:  "As",
-			Continent: "Eurasia",
+			Name:        "A",
+			Language:    "As",
+			Description: "Eurasia",
 		},
 		country.MainCountryData{
-			Name:      "B",
-			Language:  "Bs",
-			Continent: "Erope",
+			Name:        "B",
+			Language:    "Bs",
+			Description: "Erope",
 		},
 		country.MainCountryData{
-			Name:      "C",
-			Language:  "Cs",
-			Continent: "Asia",
+			Name:        "C",
+			Language:    "Cs",
+			Description: "Asia",
 		},
 		country.MainCountryData{
-			Name:      "D",
-			Language:  "Ds",
-			Continent: "Asia",
+			Name:        "D",
+			Language:    "Ds",
+			Description: "Asia",
 		},
 	}
 

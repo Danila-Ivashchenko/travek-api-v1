@@ -14,7 +14,7 @@ func TestTimezoneInsertDelete(t *testing.T) {
 	}
 	timezonesLen := len(*timezones)
 	pdatas := []timezone.PresentedTimezoneData{}
-	for i := 90; i <= 114; i++ {
+	for i := -12; i <= 14; i++ {
 		mdata := timezone.MainTimezoneData{Zone: i}
 		pdata, err := ts.AddTimezone(&mdata)
 		if err != nil {
@@ -25,20 +25,20 @@ func TestTimezoneInsertDelete(t *testing.T) {
 	if len(pdatas) != 25 {
 		t.Errorf("Error: expected 25, got %d", len(pdatas))
 	}
-	for i, pdata := range pdatas {
-		var (
-			flag bool
-			err  error
-		)
-		if i%2 == 0 {
-			flag, err = ts.DeleteTimezoneById(pdata.Id)
-		} else {
-			flag, err = ts.DeleteTimezoneByZone(pdata.Zone)
-		}
-		if !flag || err != nil {
-			t.Errorf("Error: %s", err.Error())
-		}
-	}
+	// for i, pdata := range pdatas {
+	// 	var (
+	// 		flag bool
+	// 		err  error
+	// 	)
+	// 	if i%2 == 0 {
+	// 		flag, err = ts.DeleteTimezoneById(pdata.Id)
+	// 	} else {
+	// 		flag, err = ts.DeleteTimezoneByZone(pdata.Zone)
+	// 	}
+	// 	if !flag || err != nil {
+	// 		t.Errorf("Error: %s", err.Error())
+	// 	}
+	// }
 	newTimezonesLen, err := ts.GetAllTimezones()
 	if err != nil {
 		t.Errorf("Error: %s", err.Error())

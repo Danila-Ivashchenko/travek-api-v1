@@ -34,10 +34,9 @@ HAVING
     
 
 -- поиск по дорогам 
-
+SELECT country_id as c_id, CONCAT(GROUP_CONCAT(tag_id), ',') FROM country_tags GROUP BY c_id  HAVING (select CONCAT(GROUP_CONCAT(tag_id), ',') from country_tags where country_id = c_id) LIKE "%1_%" ESCAPE ',';
+SELECT country_id as c_id FROM country_tags GROUP BY c_id HAVING 1 IN((select tag_id from country_tags where country_id = c_id)) AND 8 IN((select tag_id from country_tags where country_id = c_id))
 (SELECT
-    -- road.first_country,
-    -- road.second_country
     CASE
         WHEN road.first_country = 23 THEN road.second_country
         WHEN road.second_country = 23 THEN road.first_country
@@ -52,7 +51,7 @@ WHERE
 
 -- поиск по тегам
 
-tags = ("beautiful neature", "relax")
+-- tags = ("beautiful neature", "relax")
 
 SELECT
     country_tags.country_id as country_id
@@ -68,6 +67,24 @@ WHERE
             tags.name IN("beautiful neature", "relax")
         )
     )
+;
+
+SELECT
+	country.name
+FROM
+	country
+WHERE
+	country.id IN(
+		(SELECT
+			country_tags.country_id as country_id
+		FROM
+			country_tags
+		WHERE
+			country_tags.tag_id IN(
+				2, 3, 4	
+			)
+		)
+	)
 ;
 
 
