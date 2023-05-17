@@ -91,7 +91,7 @@ function sendData(data) {
 	var jsonData= JSON.stringify(data);
 
 	// console.log(jsonData)
-	let host = "http://api:8080"
+	let host = "http://84.201.139.249:8080"
 	let url = "/find"
 	const request = new XMLHttpRequest();
 	request.responseType =	"json";
