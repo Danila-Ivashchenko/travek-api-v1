@@ -1,0 +1,54 @@
+.sim-slider {
+  border-radius: 33px;
+  width: 100%;
+  height: 450px;
+  display: none;
+}
+
+.sim-slider-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.sim-slider-element img {
+  border-radius: 33px;
+  width: 100%;
+  height: 480px;
+}
+
+.sim-slider-element {
+  transition: opacity 1s ease-in;
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+}
+
+/* Navigation item styles */
+
+div.sim-slider-dots {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  z-index: 3;
+  text-align: center;
+}
+
+span.sim-dot {
+  color: #00A3FF;
+  width: 10px;
+  height: 10px;
+  margin: 5px 7px;
+  padding: 0;
+  display: inline-block;
+  background-color: #00A3FF;
+  border-radius: 5px;
+  cursor: pointer;
+}

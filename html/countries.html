@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/countries_style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/swipers.css">
+	<link rel="icon" href="./images/circle.png">
+    <title>Travek</title>
+</head>
+
+<body>
+    <header>
+        <div class="header_box">
+            <div class="header__box__first">
+                <img src="images/logo.png" alt="">
+                <div class="header__menu">
+                    <a href="home.html" class="header__menu__item">home</a>
+                    <a href="info.html" class="header__menu__item">information</a>
+                    <a href="countries.html" class="header__menu__item">countries</a>
+                </div>
+            </div>
+            <div class="header__box_second">
+                <img src="images/USA.png" alt="" class="last_image">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main_hbox">
+            <div class="main__hbox__title">Countries</div>
+        </div>
+        <div class="main__form__box" id="countries_box">
+            <!-- <div class="county_view">1. Russia<br>
+                <input type="button" value="view" onclick="viewRU_cnt()">
+            </div>
+            <div class="county_view">2. Japan<br>
+                <input type="button" value="view" onclick="viewJP_cnt()">
+            </div>
+            <div class="county_view">3. China<br>
+                <input type="button" value="view" onclick="viewCH_cnt()">
+            </div>
+            <div class="county_view">4. Canada<br>
+                <input type="button" value="view" onclick="viewCA_cnt()">
+            </div>
+            <div class="county_view">5. USA<br>
+                <input type="button" value="view" onclick="viewUSA_cnt()">
+            </div>
+            <div class="county_view">6. Australia<br>
+                <input type="button" value="view" onclick="viewAV_cnt()">
+            </div>
+            <div class="county_view">7. Greece<br>
+                <input type="button" value="view" onclick="viewGR_cnt()">
+            </div>
+            <div class="county_view">8. Georgia<br>
+                <input type="button" value="view" onclick="viewGO_cnt()">
+            </div>
+            <div class="county_view">9. Denmark<br>
+                <input type="button" value="view" onclick="viewDM_cnt()">
+            </div>
+            <div class="county_view">10. Abkhazia<br>
+                <input type="button" value="view" onclick="viewAB_cnt()">
+            </div>
+			 -->
+            <div class="soon">Coming soon</div>
+        </div>
+        <div class="desc_box" id="desc_box">
+            <div class="top_box">
+                <div class="lastback" onclick="lastback_cnt()">← back</div>
+                <div class="link_box">
+                    <a href="#" class="info_link">all info</a>
+                    <img src="images/figna.svg" alt="">
+                </div>
+            </div>
+            <div class="cnt_name" id="cnt_name_cnt"></div>
+            <div id="desc_cnt"></div>
+        </div>
+        <div class="sim-slider" id="sliderRU">
+            <ul class="sim-slider-list">
+                <li class="sim-slider-element"><img src="" alt="1" id="slideone"></li>
+                <li class="sim-slider-element"><img src="" alt="2" id="slidetwo"></li>
+            </ul>
+            <div class="sim-slider-arrow-left"></div>
+            <div class="sim-slider-arrow-right"></div>
+            <div class="sim-slider-dots"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer__box">
+            <div class="footer__box__firts">
+                <img src="images/logoF.png" alt="">
+                <div>2023</div>
+            </div>
+            <div class="footer__box__second">
+                <div>Russia, Irkutsk, FBKI</div>
+            </div>
+            <div class="footer__box__third">
+                <a href="#">VK</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="js/view.js"></script>
+<script src="js/load_countries.js"></script>
+<script src="js/View.js"></script>
+<script src="js/swiper.js"></script>
+<script>new Sim()</script>
+</html>

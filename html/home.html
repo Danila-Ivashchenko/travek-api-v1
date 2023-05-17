@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home_style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/swipers.css">
+    <link rel="stylesheet" href="css/filter.css">
+	<link rel="icon" href="./images/circle.png">
+    <title>Travek</title>
+</head>
+
+<body>
+    <header>
+        <div class="header_box">
+            <div class="header__box__first">
+                <img src="images/logo.png" alt="">
+                <div class="header__menu">
+                    <a href="home.html" class="header__menu__item">home</a>
+                    <a href="info.html" class="header__menu__item">information</a>
+                    <a href="countries.html" class="header__menu__item">countries</a>
+                </div>
+            </div>
+            <div class="header__box_second">
+                <img src="images/USA.png" alt="" class="last_image">
+            </div>
+        </div>
+    </header>
+    <main>
+        <p class="back_btn" id="back_btn" onclick="Back()">← back to country selection</p>
+        <div class="main_hbox">
+            <div class="main__hbox__title">Find your suitable country</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="main__form__box" id="main__form__box">
+            <div class="select_box">
+                <form method="post" action="" class="first_form">
+                    <p>Hi!</p>
+                    <p>Where you from?</p>
+                    <input type="text" name="city" list="cityname" placeholder="Empty" id="country" required>
+                    <datalist id="cityname">
+                        <option value="Russia">
+                        <option value="China">
+                        <option value="UK">
+                        <option value="Japan">
+                        <option value="Canada">
+                    </datalist><br>
+                    <input type="button" value="Start" onclick="return Points()">
+                </form>
+            </div>
+            <div class="info_box">
+                <p>Information</p>
+                <p>Tell us where you are from and we will help you find a country to suit your preferences. It is very
+                    simple, so you can not make mistakes during your trip with the choice of places.</p>
+                <p>And hit the start button! :)</p>
+            </div>
+        </div>
+        <div class="main__form__box__second" id="main__form__box__second">
+            <div class="bg"></div>
+            <form method="post" action="" class="second_form">
+
+                <!-- <div class="temp child">
+                    <p>Temparature:</p>
+                    <input type="text" name="T" placeholder="°C"> -
+                    <input type="text" name="T" placeholder="°C">
+                </div> -->
+                <div class="tags ">
+                    <p>Tags:</p>
+					<ul id="tags_list">
+					</ul>
+                    <!-- <input type="text" name="time_zones" list="time_zones" placeholder="Empty" id="time_zone">
+                    <datalist id="time_zones">
+                        <option value="UTC+0">
+                        <option value="UTC+1">
+                        <option value="UTC+2">
+                        <option value="UTC+3">
+                        <option value="UTC+4">
+                        <option value="UTC+5">
+                        <option value="UTC+6">
+                        <option value="UTC+7">
+                        <option value="UTC+8">
+                    </datalist> -->
+                </div>
+                <div class="passport child">
+                    <p>Int. passport:</p>
+                    <div class="passport__sub__box">
+                        <input type="radio" name="internal_passport" value="1" checked> need<br>
+                        <input type="radio" name="internal_passport" value="0"> dont need
+                    </div>
+                </div>
+				<div class="stay child" id="stay">
+                    <p>Possibility to stay forever</p>
+                    <div class="stay__sub__box">
+                        <input type="radio" name="poss_rad" value="1"> yes<br>
+                        <input type="radio" name="poss_rad" value="0"> no
+                    </div>
+                </div>
+                <!-- <div class="lang child">
+                    <p>Language</p>
+                    <input type="text" name="language" list="language" placeholder="Empty" id="language">
+                    <datalist id="language">
+                        <option value="English">
+                        <option value="Russian">
+                        <option value="Chinese">
+                        <option value="Japanese">
+                        <option value="Georgian">
+                        <option value="Danish">
+                        <option value="Abkhazian">
+                        <option value="Greek">
+                    </datalist>
+                </div> -->
+
+                <div class="road child" id="road">
+                    <p>Road:</p>
+                    <input type="text" name="road" list="roadd" placeholder="Empty" id="transports">
+                    <datalist id="roadd">
+                        <option value="train">
+                        <option value="plane">
+                        <option value="car">
+                        <!-- <option value="Bicycle"> -->
+                    </datalist>
+                </div>
+                <div class="timeroad child" id="timeroad">
+                    <p>Time in road</p>
+                    <input type="text" name="hours" placeholder="hours" id="max_time">
+                </div>
+            </form>
+			<div class="btns child">
+				<input type="button" value="Find" class="find_btn" onclick="Find()">
+				<!-- <input type="reset" value="Clear all" class="clear_btn"> -->
+			</div>
+
+            <!-- <div class="hide_box">
+                <div class="more" id="more" onclick="More()">More</div>
+                <div class="close close-trans" id="close" onclick="Close()"></div>
+            </div> -->
+        </div>
+        <div class="main__form__box__third" id="main__form__box__third">
+            <form method="post" action="" class="third_form">
+                <div class="filters_box">
+                    <input type="button" name="filter" id="filter" value="Filters" onclick="SecBack()">
+                    <!-- <div class="backsite">
+                        <p>Temparature:</p>
+                        <input type="text" name="T" placeholder="°C"> -
+                        <input type="text" name="T" placeholder="°C">
+                    </div> -->
+                </div>
+                <div class="result_box">
+                    <div class="res_text">Results:</div>
+                    <div id="result_countries_len"></div>
+                    <div class="line"></div>
+                    <div class="countr__box">
+                        <!-- <div class="countr__box__item">
+                            <div>1. Russia</div>
+                            <input type="button" name="rus" id="rus" value="view" onclick="viewRU()">
+                        </div>
+                        <div class="countr__box__item">
+                            <div>2. Japan</div>
+                            <input type="button" name="rus" id="rus" value="view" onclick="viewJP()">
+                        </div>
+                        <div class="countr__box__item">
+                            <div>3. China</div>
+                            <input type="button" name="rus" id="rus" value="view" onclick="viewCH()">
+                        </div>
+                        <div class="countr__box__item">
+                            <div>4. Canada</div>
+                            <input type="button" name="rus" id="rus" value="view" onclick="viewCA()">
+                        </div>
+                        <div class="countr__box__item">
+                            <div>5. Usa</div>
+                            <input type="button" name="rus" id="rus" value="view" onclick="viewUSA()">
+                        </div> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="point" id="you">
+            <div class="you">You</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot usa" id="spawn">
+            <div class="you">USA</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot russia" id="spawn">
+            <div class="you">Russia</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot canada" id="spawn">
+            <div class="you">Canada</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot japan" id="spawn">
+            <div class="you">Japan</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot china" id="spawn">
+            <div class="you">China</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="dot usa2" id="spawn">
+            <div class="you">USA</div>
+            <img src="images/circle.png" alt="">
+        </div>
+        <div class="map__box" id="map">
+            <img src="images/map.png" alt="">
+        </div>
+        <div class="main__form__box__fourth" id="main__form__box__fourth">
+            <div class="top_box">
+                <div class="lastback" onclick="lastback()">← back</div>
+                <div class="link_box">
+                    <a href="#" class="info_link">all info</a>
+                    <img src="images/figna.svg" alt="">
+                </div>
+            </div>
+            <div class="cnt_name" id="cnt_name">Russia</div>
+            <div id="desc">Russia (Russian Federation) is the largest state in the world, occupying 1/6 of the entire land area of
+                ​​the Earth. This is a country with a long history, rich culture and generous nature. Some monuments of
+                architecture, history and culture on the territory of the Russian Federation are included in the list of
+                UNESCO World Heritage Sites.</div>
+
+        </div>
+        <div class="sim-slider" id="sliderRU">
+            <ul class="sim-slider-list">
+                <li class="sim-slider-element"><img src="" alt="1" id="slideone"></li>
+                <li class="sim-slider-element"><img src="" alt="2" id="slidetwo"></li>
+            </ul>
+            <div class="sim-slider-arrow-left"></div>
+            <div class="sim-slider-arrow-right"></div>
+            <div class="sim-slider-dots"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer__box">
+            <div class="footer__box__firts">
+                <img src="images/logoF.png" alt="">
+                <div>2023</div>
+            </div>
+            <div class="footer__box__second">
+                <div>Russia, Irkutsk, FBKI</div>
+            </div>
+            <div class="footer__box__third">
+                <a href="#">VK</a>
+                <a href="#">Telegram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="js/pkg.js"></script>
+<script src="js/back.js"></script>
+<script src="js/more.js"></script>
+<script src="js/points.js"></script>
+<!-- <script src="js/change.js"></script> -->
+<script src="js/find.js"></script>
+<script src="js/view.js"></script>
+<script src="js/swiper.js"></script>
+<script src="js/loader.js"></script>
+<script>new Sim()</script>
+</html>

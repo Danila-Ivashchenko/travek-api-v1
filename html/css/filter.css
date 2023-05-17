@@ -1,0 +1,18 @@
+
+.tags ul{
+	margin-left: 0;
+    padding-left: 0;
+}
+
+.tags ul li{
+	list-style-type	: none;
+}
+
+.tags ul li:not(:last-child){
+	margin-bottom: 10px;
+
+}
+
+.tags ul li label {
+	margin-right: 5px;
+}
