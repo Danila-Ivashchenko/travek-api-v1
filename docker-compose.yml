@@ -9,7 +9,7 @@ services:
       - "8080:8080"
 
   db:
-    image: mysql-utf8
+    image: mysql
     command: "--default-authentication-plugin=mysql_native_password"
     environment:
       MYSQL_ROOT_PASSWORD: qwer

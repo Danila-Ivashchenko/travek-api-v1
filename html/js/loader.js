@@ -2,7 +2,7 @@ load_cityname()
 
 function load_tags() {
 	console.log("loaded")
-	let host = "http://localhost:8080"
+	let host = "http://api:8080"
 	let url = "/tags"
 	const request = new XMLHttpRequest();
 	request.responseType =	"json";
@@ -42,7 +42,7 @@ function create_tags(data) {
 }
 
 function load_cityname() {
-	let host = "http://localhost:8080"
+	let host = "http://api:8080"
 	let url = "/country/all"
 	const request = new XMLHttpRequest();
 	request.responseType =	"json";
