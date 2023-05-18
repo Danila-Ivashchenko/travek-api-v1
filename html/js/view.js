@@ -187,7 +187,7 @@ function viewUSA() {
 // countriesPAGE
 function lastback_cnt() {
     document.getElementById("desc_box").style.display = "none";
-    document.getElementById("countries_box").style.display = "grid";
+    document.getElementById("countries_box").style.display = "flex";
     document.getElementById("sliderRU").style.display = "none";
 }
 
